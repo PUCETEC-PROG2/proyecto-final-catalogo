@@ -29,9 +29,6 @@
                 <td>{{ client.adress }}</td>
                 <td>{{ client.payment }}</td>
                 <td>
-                    <a href="/client/{{ client.id }}" class="btn btn-primary btn-sm" title="Ver">
-                        <i class="fa-solid fa-eye"></i>
-                    </a>
                     {% if user.is_authenticated %}
                     <a href="/edit_Client/{{ client.id }}" class="btn btn-warning btn-sm" title="Editar">
                         <i class="fa-solid fa-pencil"></i>

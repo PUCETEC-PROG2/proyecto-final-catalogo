@@ -18,7 +18,6 @@ urlpatterns = [
     path("vhs/<int:VHS_id>/", views.vhs, name="vhs"),
     path("videoequipment/<int:VE_id>/", views.videoequipment, name="videoequipment"),
     path("purchase/<int:purchase_id>/", views.purchase, name="purchase"),
-    path("client/<int:client_id>/", views.client, name="client"),
 
     #Superusuario (admin)
     path("add_DVD/", views.add_DVD, name="add_DVD"),

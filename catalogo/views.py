@@ -110,14 +110,6 @@ def purchase(request, purchase_id):
     }
     return HttpResponse(template.render(context, request))
 
-def client(request, client_id):
-    client = Client.objects.get(id=client_id)
-    template = loader.get_template('display_client.html')
-    context = {
-        'client': client
-    }
-    return HttpResponse(template.render(context, request))
-
 @login_required
 
 # DVD VIEWS
