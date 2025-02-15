@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block title %}Página Inicial{% endblock title %}
+{% block content %}
+<div class="info-bar" style="width: 40%; display: block; text-align: center; padding: 15px;">
+    <strong>Bienvenido a 'FILMOTECA RETRO'</strong>
+  </div>
+
+<!-- DVD -->
+
+<div class="container py-5" style="background-color: #f7f7f7; border-radius: 15px; width: 100%; margin: auto;">
+    <h3 class="text-center mb-4">DVD</h3>
+    
+    {% if user.is_authenticated %}
+    <div class="text-center mb-3">
+        <a href="{% url "catalogo:add_DVD" %}" class="btn btn-success">
+            <i class="fa-solid fa-plus"></i> Añadir DVD
+        </a>
+    </div>
+    {% endif %}
+    <div class="row justify-content-center">
+        {% for dvd in dvds %}
+        <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                <img src="{{ dvd.picture.url }}" class="card-img-top" alt="Imagen del DVD">
+                <div class="card-body text-center" style="background-color: #fff7e6;">
+                    <h5 class="card-title text-capitalize">{{ dvd }}</h5>
+                    <h6 class="card-title text-capitalize">{{ dvd.description }}</h6>
+                    <a href="dvd/{{dvd.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-eye"></i> Más información
+                    </a>
+                    {% if user.is_authenticated %}
+                    <a href="edit_DVD/{{dvd.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-pencil"></i> Editar
+                    </a>
+                    <a href="delete_DVD/{{dvd.id}}" class="btn btn-danger btn-delete" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-trash"></i> Eliminar
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+<!-- VHS -->
+
+        <h3 class="text-center mb-4">VHS</h3>
+        
+        {% if user.is_authenticated %}
+        <div class="text-center mb-3">
+            <a href="{% url "catalogo:add_VHS" %}" class="btn btn-success">
+                <i class="fa-solid fa-plus"></i> Añadir VHS
+            </a>
+        </div>
+        {% endif %}
+
+    <div class="row justify-content-center">
+        {% for vhs in vhss %}
+        <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                <img src="{{ vhs.picture.url }}" class="card-img-top" alt="Imagen del VHS">
+                <div class="card-body text-center" style="background-color: #fff7e6;">
+                    <h5 class="card-title text-capitalize">{{ vhs }}</h5>
+                    <h6 class="card-title text-capitalize">{{ vhs.description }}</h6>
+                    <a href="vhs/{{vhs.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-eye"></i> Más información
+                    </a>
+                    {% if user.is_authenticated %}
+                    <a href="edit_VHS/{{vhs.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-pencil"></i> Editar
+                    </a>
+                    <a href="delete_VHS/{{vhs.id}}" class="btn btn-danger btn-delete" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-trash"></i> Eliminar
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+<!-- EQUIPOS DE VIDEO -->
+
+        <h3 class="text-center mb-4">Equipos de Video</h3>
+        
+        {% if user.is_authenticated %}
+        <div class="text-center mb-3">
+            <a href="{% url "catalogo:add_VideoEquipments" %}" class="btn btn-success">
+                <i class="fa-solid fa-plus"></i> Añadir Equipos de Video
+            </a>
+        </div>
+        {% endif %}
+
+    <div class="row justify-content-center">
+        {% for videoequipment in videoequipments %}
+        <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+            <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                <img src="{{ videoequipment.picture.url }}" class="card-img-top" alt="Imagen del VE">
+                <div class="card-body text-center" style="background-color: #fff7e6;">
+                    <h5 class="card-title text-capitalize">{{ videoequipment }}</h5>
+                    <h6 class="card-title text-capitalize">{{ videoequipment.description }}</h6>
+                    <a href="videoequipment/{{videoequipment.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-eye"></i> Más información
+                    </a>
+                    {% if user.is_authenticated %}
+                    <a href="edit_VideoEquipments/{{videoequipment.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-pencil"></i> Editar
+                    </a>
+                    <a href="delete_VideoEquipments/{{videoequipment.id}}" class="btn btn-danger btn-delete" style="margin-bottom: 5px;">
+                        <i class="fa-solid fa-trash"></i> Eliminar
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock content %}

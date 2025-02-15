@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Ingreso de Compra{% endblock title %}
+{% block content %}
+<div class="container my-4">
+    <div class="card" style="background-color: #fef7ec; border-radius: 10px; border-color: #f7a23b; padding: 20px;">
+        <h3 class="text-center" style="color: #333333;">Ingreso de Compra</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_client" style="color: #333333;">Cliente</label>
+                {{ form.client }}
+            </div>
+            <div class="table-responsive mt-4">
+                <table class="table table-bordered table-hover text-center" style="background-color: #ffffff; border-radius: 10px; border-color: #f7a23b;">
+                    <thead style="background-color: #f7a23b; color: white;">
+                        <tr>
+                            <th scope="col">✔</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="products" value="{{ product.id }}">
+                            </td>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.category }}</td>
+                            <td class="product-price">{{ product.price }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">Total</th>
+                            <th id="total_price" style="text-align: center;">0</th>
+                            <input type="hidden" name="total_price" id="total_price_input">
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <a href="{% url 'catalogo:Purchases' %}" class="btn btn-secondary">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('input[name="products"]');
+        const totalField = document.getElementById('total_price');
+        const totalPriceInput = document.getElementById('total_price_input');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                let total = 0;
+                checkboxes.forEach(item => {
+                    if (item.checked) {
+                        const price = parseFloat(item.closest('tr').querySelector('.product-price').innerText);
+                        total += price;
+                    }
+                });
+                totalField.innerText = total.toFixed(2);
+                totalPriceInput.value = total.toFixed(2);
+            });
+        });
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,87 @@
+body {
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #ffa726;
+    border-bottom: 3px solid #fb8c00;
+}
+
+.navbar a.nav-link {
+    font-weight: bold;
+    color: white !important;
+}
+
+.navbar a.nav-link:hover {
+    color: #ffeb3b !important;
+}
+
+.navbar .form-control {
+    max-width: 300px;
+    border-radius: 20px;
+}
+
+.navbar .btn-outline-success {
+    border-radius: 20px;
+}
+
+.info-bar {
+    text-align: center;
+    padding: 15px;
+    background-color: #ffa726;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px #000000;
+    border-bottom: 3px solid #fb8c00;
+}
+
+.btn-outline-success,
+.btn-outline-danger {
+    color: white !important;
+    border-color: #ffffff;
+}
+
+.btn-outline-success:hover {
+    background-color: #81c784;
+    color: white !important;
+}
+
+.btn-outline-danger:hover {
+    background-color: #e57373;
+    color: white !important;
+}
+
+.info-bar {
+    margin: 20px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffa726;
+    border: 2px solid #fb8c00;
+    border-radius: 10px;
+    width: 80%;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.welcome-message {
+    color: #ffffff;
+    text-shadow: 1px 1px 4px #000000;
+}
+
+.auth-links a {
+    font-weight: bold;
+    color: white !important;
+    border-color: #ffffff;
+    margin-left: 10px;
+}
+
+.auth-links a:hover {
+    background-color: #fff;
+    color: #ffa726 !important;
+    border-color: #ffa726;
+}

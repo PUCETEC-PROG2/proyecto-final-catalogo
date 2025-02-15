@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Detalles de la Compra{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 style="color:rgb(26, 97, 230); text-shadow: 3px 3px 5px #ffff; text-align:center;">Detalles de la Compra</h2>
+
+    <div style="background:rgb(190, 243, 247); border-radius: 10px; padding: 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+        <h4 style="color: rgb(26, 97, 230);">Cliente</h4>
+        <p style="font-size: 1.1rem; color: #333;"><strong>Nombre:</strong> {{ purchase.client.name }}</p>
+        <p style="font-size: 1.1rem; color: #333;"><strong>Correo:</strong> {{ purchase.client.email }}</p>
+        <p style="font-size: 1.1rem; color: #333;"><strong>Teléfono:</strong> {{ purchase.client.phone }}</p>
+        <p style="font-size: 1.1rem; color: #333;"><strong>Método de Pago:</strong> {{ purchase.client.payment }}</p>
+        <p style="font-size: 1.1rem; color: #333;"><strong>Fecha de Compra:</strong> {{ purchase.date }}</p>
+    </div>
+
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-hover text-center" style="background-color: #ffffff; border-radius: 10px; border-color: #f7a23b;">
+            <thead style="background-color: #f7a23b; color: white;">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td class="product-price">${{ product.price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="3">Total</th>
+                    <th id="total_price" style="text-align: center; color: #43a047;">${{ purchase.total_price }}</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'catalogo:Purchases' %}" class="btn btn-secondary" style="background: rgb(26, 97, 230); border: none; color: #fff; padding: 10px 15px; border-radius: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+            Regresar
+        </a>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Resultados de búsqueda{% endblock title %}
+
+{% block content %}
+<div class="container mt-4" style="text-align: center;">
+    <h3>Resultados para "{{ query }}"</h3>
+
+    {% if dvds or vhss or videoequipments %}
+        <div class="row">
+
+            <!-- Resultados de DVDs -->
+
+            {% if dvds %}
+                {% for dvd in dvds %}
+                <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+                    <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                        <img src="{{ dvd.picture.url }}" class="card-img-top" alt="Imagen del DVD">
+                        <div class="card-body text-center" style="background-color: #fff7e6;">
+                            <h5 class="card-title text-capitalize">{{ dvd }}</h5>
+                            <h6 class="card-title text-capitalize">{{ dvd.description }}</h6>
+                            <a href="/dvd/{{dvd.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-eye"></i> Más información
+                            </a>
+                            {% if user.is_authenticated %}
+                            <a href="/edit_DVD/{{dvd.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-pencil"></i> Editar
+                            </a>
+                            <a href="/delete_DVD/{{dvd.id}}" class="btn btn-danger" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Resultados de VHS -->
+
+            {% if vhss %}
+                {% for vhs in vhss %}
+                <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+                    <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                        <img src="{{ vhs.picture.url }}" class="card-img-top" alt="Imagen del VHS">
+                        <div class="card-body text-center" style="background-color: #fff7e6;">
+                            <h5 class="card-title text-capitalize">{{ vhs }}</h5>
+                            <h6 class="card-title text-capitalize">{{ vhs.description }}</h6>
+                            <a href="/vhs/{{vhs.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-eye"></i> Más información
+                            </a>
+                            {% if user.is_authenticated %}
+                            <a href="/edit_VHS/{{vhs.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-pencil"></i> Editar
+                            </a>
+                            <a href="/delete_VHS/{{vhs.id}}" class="btn btn-danger" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Resultados de VideoEquipments -->
+
+            {% if videoequipments %}
+                {% for videoEquipments in videoequipments %}
+                <div class="col-sm-6 col-md-3 mb-4 d-flex justify-content-center">
+                    <div class="card shadow-lg" style="width: 18rem; border-radius: 15px; overflow: hidden;">
+                        <img src="{{ videoEquipments.picture.url }}" class="card-img-top" alt="Imagen del VE">
+                        <div class="card-body text-center" style="background-color: #fff7e6;">
+                            <h5 class="card-title text-capitalize">{{ videoEquipments }}</h5>
+                            <h6 class="card-title text-capitalize">{{ videoEquipments.description }}</h6>
+                            <a href="/video_equipments/{{videoEquipments.id}}" class="btn btn-primary me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-eye"></i> Más información
+                            </a>
+                            {% if user.is_authenticated %}
+                            <a href="/edit_VideoEquipments/{{videoEquipments.id}}" class="btn btn-warning me-2" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-pencil"></i> Editar
+                            </a>
+                            <a href="/delete_VideoEquipments/{{videoEquipments.id}}" class="btn btn-danger" style="margin-bottom: 5px;">
+                                <i class="fa-solid fa-trash"></i> Eliminar
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No se encontraron resultados para "{{ query }}".</p>
+    {% endif %}
+    <a href="{% url "catalogo:index" %}" class="btn btn-secondary">Regresar</a>
+</div>
+{% endblock content %}
